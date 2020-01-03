@@ -365,7 +365,9 @@ def intro():
     global balls
     global fball
     global bat
+    global stop
     intro = True
+    stop = True
     while intro:
         clock.tick(35)
         for event in pygame.event.get():
