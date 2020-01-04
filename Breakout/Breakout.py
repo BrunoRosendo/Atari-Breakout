@@ -101,7 +101,7 @@ class ball(object):                         # creates the first ball of the leve
                 wall.play()
                 self.state1 = False
                 self.state2 = True
-            if self.y <= 0:
+            elif self.y <= 0:
                 wall.play()
                 self.state1 = False
                 self.state4 = True
@@ -112,7 +112,7 @@ class ball(object):                         # creates the first ball of the leve
                 wall.play()
                 self.state2 = False
                 self.state1 = True
-            if self.y <= 0:
+            elif self.y <= 0:
                 wall.play()
                 self.state2 = False
                 self.state3 = True
@@ -123,7 +123,7 @@ class ball(object):                         # creates the first ball of the leve
                 wall.play()
                 self.state3 = False
                 self.state4 = True
-            if self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
+            elif self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
                 if bat.x + playerw >= self.x >= bat.x + playerw - 30:
                     wall.play()
                     self.state3 = False
@@ -139,7 +139,7 @@ class ball(object):                         # creates the first ball of the leve
                 wall.play()
                 self.state4 = False
                 self.state3 = True
-            if self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
+            elif self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
                 if bat.x - 5 <= self.x <= bat.x + 20:
                     wall.play()
                     self.state4 = False
@@ -337,7 +337,7 @@ while run:                                  # main loop
                     bricks.append(brick(x, y, 0))
             for x in range(50, winw - 100, 125):
                 bricks.append(brick(x, 175, 1))
-    if level2:
+    elif level2:
         if bricks == []:
             level2 = False
             level3 = True
@@ -353,7 +353,7 @@ while run:                                  # main loop
             bricks.append(ballbrick(550, 60))
             bricks.append(ballbrick(550, 250))
             bricks.append(ballbrick(550, 420))
-    if level3:
+    elif level3:
         if bricks == []:
             level3 = False
             level4 = True
@@ -371,7 +371,7 @@ while run:                                  # main loop
                     bricks.append(brick(x, y, 0))
             bricks[15] = ballbrick(bricks[15].x, bricks[15].y)
             bricks[40] = ballbrick(bricks[40].x, bricks[40].y)
-    if level4:
+    elif level4:
         if bricks == []:
             level4 = False
             level5 = True
@@ -401,7 +401,7 @@ while run:                                  # main loop
                 bricks.append(brick(x, 50+12*blockh, 0))
             for x, y in [(0, 0), (winw-blockw, 60+3*blockh), (0,  60 + 8*blockh)]:
                 bricks.append(ballbrick(x, y))
-    if level5:
+    elif level5:
         if bricks==[]:
             levelup.play()
             pygame.time.delay(1000)
