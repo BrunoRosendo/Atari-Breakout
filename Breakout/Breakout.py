@@ -290,6 +290,8 @@ while run:                                  # main loop
         if event.type == pygame.QUIT:
             run = False
     keys = pygame.key.get_pressed()
+#    if keys[pygame.K_LSHIFT]:           # debugging tool
+#        bricks = []
     if keys[pygame.K_LEFT] and bat.x > 27:   # control of the bat
         bat.x -= bat.vel
     if keys[pygame.K_RIGHT] and bat.x < winw - playerw - 30:
