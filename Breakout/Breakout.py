@@ -3,7 +3,7 @@ get_ipython().magic('reset -sf')
 
 import random
 import pygame
-pygame.mixer.pre_init(44100, -16, 1, 512)
+pygame.mixer.pre_init(44100, -16, 1, 512)   # reduces audio size
 pygame.init()
 
 winw = 1200                                 # window setup and sprites
@@ -124,7 +124,7 @@ class ball(object):                         # creates the first ball of the leve
                 self.state3 = False
                 self.state4 = True
             elif self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
-                if bat.x + playerw >= self.x >= bat.x + playerw - 30:
+                if bat.x + playerw >= self.x >= bat.x + playerw - 25:
                     wall.play()
                     self.state3 = False
                     self.state1 = True
@@ -140,7 +140,7 @@ class ball(object):                         # creates the first ball of the leve
                 self.state4 = False
                 self.state3 = True
             elif self.y + 2*radius >= bat.y and self.y <= bat.y + playerh // 2:
-                if bat.x - 5 <= self.x <= bat.x + 20:
+                if bat.x - 5 <= self.x <= bat.x + 15:
                     wall.play()
                     self.state4 = False
                     self.state2 = True
@@ -149,18 +149,18 @@ class ball(object):                         # creates the first ball of the leve
                     self.state4 = False
                     self.state1 = True
     
-    def pop(self, bricks):
+    def pop(self, bricks):                                      # detects  all kinds of bricks and pops them/creates a new ball
         for brick in bricks:
             if self.x <= brick.x + blockw and self.x + 2*radius >= brick.x and \
-               self.y + 2*radius >= brick.y and self.y <= brick.y + blockh and self.counter == 0:
-                   if brick.toughness == 0:
+               self.y + 2*radius >= brick.y and self.y <= brick.y + blockh:
+                   if brick.toughness == 0 and self.counter == 0:
                        bricks.pop(bricks.index(brick))
                        wall.play()
-                   else:
+                   elif self.counter == 0:
                        brick.toughness -= 1
-                   self.counter = 17
                    wall.play()
-                   if brick.ball:
+                   if brick.ball and self.counter == 0:
+                       self.counter = 17
                        newball = ball(bat, brick.x, brick.y)
                        num = random.randint(0, 1)
                        if self.state3:
@@ -213,7 +213,7 @@ class brick(object):                              # creates a brick of given tou
     def draw(self, win):
         win.blit(brickimg[self.toughness], (self.x, self.y))
 
-class ballbrick(object):
+class ballbrick(object):                        # brick which creates a new ball when popped
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -236,7 +236,7 @@ def redraw():                              # redraw the window
     pygame.display.update()
 
 
-def intro():
+def intro():                        # shown at the start and end of the level
     global run, bricks, level1, level2, level3, level4, level5, balls, fball, bat, stop
     intro = True
     stop = True
@@ -249,8 +249,8 @@ def intro():
         win.blit(start, (0, 0))
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-        if 500 + 200 > mouse[0] > 500 and 180 + 100 > mouse[1] > 180:
-            pygame.draw.rect(win, (30, 110, 245), (500, 180, 200, 100))
+        if 500 + 200 > mouse[0] > 500 and 220 + 100 > mouse[1] > 220:           # buttons of quit and play
+            pygame.draw.rect(win, (0, 210, 50), (500, 220, 200, 100))
             if click[0] == 1:
                 intro = False
                 run = True
@@ -267,17 +267,18 @@ def intro():
                 balls = [ball(bat, 0, 0, True)]
                 fball = balls[0]
         else:
-            pygame.draw.rect(win, (0, 0, 200), (500, 180, 200, 100))
-        if 500 + 200 > mouse[0] > 500 and 330 + 100 > mouse[1] > 330:
+            pygame.draw.rect(win, (0, 150, 60), (500, 220, 200, 100))
+        if 500 + 200 > mouse[0] > 500 and 370 + 100 > mouse[1] > 370:
             if click[0] == 1:
                 intro = False
-            pygame.draw.rect(win, (30, 110, 245), (500, 330, 200, 100))
+                run = False
+            pygame.draw.rect(win, (0, 210, 50), (500, 370, 200, 100))
         else:
-            pygame.draw.rect(win, (0, 0, 200), (500, 330, 200, 100))
+            pygame.draw.rect(win, (0, 150, 60), (500, 370, 200, 100))
         play = bigfont.render('Play', 1, (255, 255, 255))
-        win.blit(play, (520, 200))
+        win.blit(play, (520, 240))
         qu = bigfont.render('Quit', 1, (255, 255, 255))
-        win.blit(qu, (510, 350))
+        win.blit(qu, (510, 390))
         pygame.display.update()
 
 intro()
@@ -289,8 +290,6 @@ while run:                                  # main loop
         if event.type == pygame.QUIT:
             run = False
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_LSHIFT]:           # debugging tool. Get rid of
-        bricks = []
     if keys[pygame.K_LEFT] and bat.x > 27:   # control of the bat
         bat.x -= bat.vel
     if keys[pygame.K_RIGHT] and bat.x < winw - playerw - 30:
@@ -323,8 +322,8 @@ while run:                                  # main loop
         bal.state(bat)
         bal.pop(bricks)
     if level1:
-        if bricks == []:                         # player goes to lv2
-            level1 = False
+        if bricks == []:                         # conditions to check if the player ended the level
+            level1 = False                       # also creates the matrix of the next level
             level2 = True
             stop = True
             fstates()
