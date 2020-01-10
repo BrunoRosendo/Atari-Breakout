@@ -1,16 +1,16 @@
-# Projeto Kong Fu
+# Projeto Atari Breakout
 ### FPRO/MIEIC, 2019/20
-### João Gil Marinho Mesquita (up201906682)
-### 1MIEIC03
+### Bruno André Moreira Rosendo (up201906334)
+### 1MIEIC06
 
 #### Objetivo
 
-1. Criar um clone do clássico Kong Fu em pygame com algumas ideias originais.
+1. Criar um clone do jogo clássico Atari Breakout em pygame, com algumas ideias novas.
 
 
 #### Repositório de código
 
-1) Link para o repositório do GitHub: https://github.com/fpro-feup/public
+1) Link para o repositório do GitHub: https://github.com/BrunoRosendo/fpro
 
 2) Adicionar o prof. da Unidade (ver lista em baixo) e o "Lord of the Game" (aka Ricardo Cruz):
 
@@ -21,11 +21,11 @@
 
 #### Descrição
 
-The player takes the role of Keiji Thomas, a man in a Keikogi and slippers. Thomas's girlfriend, Sylvia, has been kidnapped by "Mr. X", and Thomas must fight through five side-scrolling floors full of enemies to rescue her.
+O jogador controla uma "raquete", de modo a ricochetear uma bola, com o objetivo de destruir todos os blocos do nível. O jogo contém 5 níveis, sendo introduzidas novas mecânicas (blocos diferentes, múltiplas bolas, etc.) ao longo destes níveis. O jogador ganha o jogo se completar os níveis sem perder todas as suas vidas.
 
 #### UI
 
-![UI](https://github.com/monkin77/Kongfu/blob/master/UI.png)
+![UI](https://github.com/BrunoRosendo/fpro/blob/master/UI.PNG)
 
 ### Pacotes
 
@@ -33,13 +33,12 @@ The player takes the role of Keiji Thomas, a man in a Keikogi and slippers. Thom
 
 #### Tarefas
 
-1. Estudo das animações com sprites (100%)
-1. carregar os níveis (100%)
-3. Ler teclas e mover as peças (100%)
-4. Detetar colisões (100%)
-5. Adicionar Score, hp bar (100%)
-6. Adicionar título, background e GameOver screen (100%)
-7. Adicionar sound effects (100%)
-8. Adicionar special attack e barra de stamina para carregar (100%)
-9. Adicionar música de fundo (100%)
-#### 18/11/2019
+1. Ler teclas e controlar da raquete (100%)
+1. Matriz do primeiro nível (100%)
+3. Sprites e animações (100%)
+4. Detetar colisões e eliminar blocos (100%)
+5. Adicionar soundtrack e sound effects (100%)
+6. Carregar novos níveis (100%)
+7. Desenvolvimento dos 5 níveis (100%)
+8. Introdução do start screen (100%)
+
