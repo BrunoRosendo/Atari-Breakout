@@ -1,5 +1,5 @@
-from IPython import get_ipython             # clears variables before running
-get_ipython().magic('reset -sf')
+#from IPython import get_ipython             # clears variables before running
+#get_ipython().magic('reset -sf')
 
 import random
 import pygame
