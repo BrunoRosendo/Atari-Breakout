@@ -1,6 +1,3 @@
-from IPython import get_ipython             # clears variables before running
-get_ipython().magic('reset -sf')
-
 import random
 import pygame
 pygame.mixer.pre_init(44100, -16, 1, 512)   # reduces audio size
