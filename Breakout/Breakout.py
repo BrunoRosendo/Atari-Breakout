@@ -1,5 +1,5 @@
-#from IPython import get_ipython             # clears variables before running
-#get_ipython().magic('reset -sf')
+from IPython import get_ipython             # clears variables before running
+get_ipython().magic('reset -sf')
 
 import random
 import pygame
@@ -255,7 +255,7 @@ def intro():                        # shown at the start and end of the level
                 intro = False
                 run = True
                 bricks = []
-                for y in [50, 100, 150, 200, 250]:
+                for y in [50, 100, 150, 200, 250]:               # creates the matrix of lv1
                     for x in range(32, winw - 80, 130):
                         bricks.append(brick(x, y, 0))
                 level1 = True
@@ -290,9 +290,9 @@ while run:                                  # main loop
         if event.type == pygame.QUIT:
             run = False
     keys = pygame.key.get_pressed()
-#    if keys[pygame.K_LSHIFT]:           # debugging tool
-#        bricks = []
-    if keys[pygame.K_LEFT] and bat.x > 27:
+    if keys[pygame.K_LSHIFT]:           # debugging tool. Get rid of
+        bricks = []
+    if keys[pygame.K_LEFT] and bat.x > 27:   # control of the bat
         bat.x -= bat.vel
     if keys[pygame.K_RIGHT] and bat.x < winw - playerw - 30:
         bat.x += bat.vel
@@ -312,12 +312,11 @@ while run:                                  # main loop
                 pygame.time.delay(100)
                 stop = True
                 fstates()
-                if bat.hp == 0:
-                    pygame.mixer.music.set_volume(0)
+                if bat.hp == 0:                          # player loses the game
                     lost.play()
                     pygame.time.delay(2000)
-                    print('You lost')
-                    run = False
+                    pygame.mouse.set_visible(1)
+                    intro()
             else:
                 balls.pop(balls.index(bal))
     for bal in balls:
