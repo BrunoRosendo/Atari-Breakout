@@ -33,7 +33,7 @@ O jogador controla uma "raquete", de modo a ricochetear uma bola, com o objetivo
 
 #### Tarefas
 
-1. Ler teclas e controlar da raquete (100%)
+1. Ler teclas e controlar a raquete (100%)
 1. Matriz do primeiro nível (100%)
 3. Sprites e animações (100%)
 4. Detetar colisões e eliminar blocos (100%)
